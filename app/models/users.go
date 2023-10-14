@@ -35,3 +35,19 @@ func (u *User) CreateUser() (err error) {
 	}
 	return err
 }
+
+// Userの取得を行う関数
+// NOTE: ポインタ型にすると、nilポインタになる
+func GetUser(id int) (user User, err error) {
+	cmd := `select id, uuid, name, email, password, created_at from users where id = ?`
+
+	err = Db.QueryRow(cmd, id).Scan(
+		&user.ID,
+		&user.UUID,
+		&user.Name,
+		&user.Email,
+		&user.PassWord,
+		&user.CreateAt,
+	)
+	return user, err
+}
