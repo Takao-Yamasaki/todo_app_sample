@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
+	"todo_app_sample/app/models"
 	"todo_app_sample/config"
 )
 
@@ -15,4 +16,6 @@ func main() {
 
 	// ログ出力のテスト
 	log.Println("test")
+
+	fmt.Println(models.Db)
 }
