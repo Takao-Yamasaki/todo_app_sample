@@ -49,5 +49,18 @@ func GetUser(id int) (user User, err error) {
 		&user.PassWord,
 		&user.CreateAt,
 	)
-	return user, err
+	if err != nil {
+		return user, err
+	}
+	return user, nil
+}
+
+// Userを更新するメソッド
+func (u *User) UpdateUser() (err error) {
+	cmd := `update users set name = ?, email = ? where id = ?`
+	_, err = Db.Exec(cmd, u.Name, u.Email, u.ID)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return nil
 }
