@@ -83,3 +83,35 @@ func (u *User) GetTodosByUser() (todos []Todo, err error) {
 	}
 	return todos, nil
 }
+
+// TODO: 仮実装
+// Todoのデータを更新するメソッド
+func (u *User) UpdateTodo(content string) (err error) {
+	cmd := `update todos set content = ?`
+	_, err = Db.Exec(cmd, content)
+	if err != nil {
+		log.Fatalln(err)
+	}
+	return nil
+}
+
+// TODO: 仮実装
+// Todoのデータを削除するメソッド
+func (u *User) DeleteTodo(id int) (err error) {
+	cmd := `delete from todos where id = ?`
+	_, err = Db.Exec(cmd, id)
+	if err != nil {
+		log.Fatalln(err)
+	}
+	return nil
+}
+
+// TODO: 次はサーバーから
+// 構成の変更
+// MySQLに変更
+// Gormに変更
+// Sessionが出てこなかったら、Session管理入れてみてもいいかも
+// TODO: Dockerfileの作成
+// TODO: WebコンテナとDBコンテナを作成(docker-comppose.yml)
+// TODO: EC2でもいいかもしれない
+// TODO: ECSにプッシュ
