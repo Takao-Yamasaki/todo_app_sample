@@ -25,7 +25,7 @@ func main() {
 	u.PassWord = "testtest"
 	fmt.Println(u)
 
-	u.CreateUser()
+	// u.CreateUser()
 
 	// u, _ := models.GetUser(1)
 
@@ -41,6 +41,9 @@ func main() {
 	// u, _ = models.GetUser(1)
 	// fmt.Println(u)
 
-	user, _ := models.GetUser(2)
-	user.CreateTodo("first Todo")
+	// user, _ := models.GetUser(2)
+	// user.CreateTodo("first Todo")
+
+	t, _ := models.GetTodo(1)
+	fmt.Println(t)
 }
