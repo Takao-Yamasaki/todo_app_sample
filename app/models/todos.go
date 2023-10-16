@@ -86,11 +86,10 @@ func (u *User) GetTodosByUser() (todos []Todo, err error) {
 	return todos, nil
 }
 
-// TODO: 仮実装
 // Todoのデータを更新するメソッド
-func (u *User) UpdateTodo(content string) (err error) {
-	cmd := `update todos set content = ?`
-	_, err = Db.Exec(cmd, content)
+func (t *Todo) UpdateTodo() (err error) {
+	cmd := `update todos set content = ?, user_id = ? where id = ?`
+	_, err = Db.Exec(cmd, t.Content, t.UserID, t.ID)
 	if err != nil {
 		log.Fatalln(err)
 	}
