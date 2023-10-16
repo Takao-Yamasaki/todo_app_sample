@@ -7,6 +7,10 @@ import (
 )
 
 func StartMainServer() error {
+	files := http.FileServer(http.Dir(config.Config.Static))
+	// NOTE:/static/というディレクトリは無いので、/static/をパスから取り除く
+	http.Handle("/static/", http.StripPrefix("/static/", files))
+
 	// topハンドラを呼び出す
 	http.HandleFunc("/", top)
 
