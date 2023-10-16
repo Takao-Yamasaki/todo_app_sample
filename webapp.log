@@ -26,3 +26,7 @@
 2023/10/16 21:23:27 main.go:18: test
 2023/10/16 21:31:18 main.go:18: test
 2023/10/16 22:31:51 main.go:18: test
+2023/10/16 22:48:48 server.go:13: server start at 8000
+2023/10/16 22:50:43 server.go:13: server start at 8080
+2023/10/16 22:59:21 server.go:15: server start at 8080
+2023/10/16 23:02:51 server.go:16: server start at 8080
