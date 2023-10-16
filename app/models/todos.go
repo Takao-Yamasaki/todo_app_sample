@@ -96,11 +96,10 @@ func (t *Todo) UpdateTodo() (err error) {
 	return nil
 }
 
-// TODO: 仮実装
 // Todoのデータを削除するメソッド
-func (u *User) DeleteTodo(id int) (err error) {
+func (t *Todo) DeleteTodo() (err error) {
 	cmd := `delete from todos where id = ?`
-	_, err = Db.Exec(cmd, id)
+	_, err = Db.Exec(cmd, t.ID)
 	if err != nil {
 		log.Fatalln(err)
 	}
