@@ -1,10 +1,24 @@
 package controllers
 
 import (
+	"fmt"
+	"html/template"
 	"log"
 	"net/http"
 	"todo_app_sample/config"
 )
+
+func generateHTML(w http.ResponseWriter, data interface{}, filenames ...string) {
+	var files []string
+	for _, file := range filenames {
+		files = append(files, fmt.Sprintf("app/views/templates/%s.html", file))
+	}
+
+	// NOTE: errの場合は、panic errorとなる
+	templates := template.Must(template.ParseFiles(files...))
+	// defineを使って宣言したtemplateを読み込む場合には、明示的に宣言する必要がある
+	templates.ExecuteTemplate(w, "layout", data)
+}
 
 func StartMainServer() error {
 	files := http.FileServer(http.Dir(config.Config.Static))
