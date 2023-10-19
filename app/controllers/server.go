@@ -8,6 +8,7 @@ import (
 	"todo_app_sample/config"
 )
 
+// 渡されたHTMLファイルを読み込む関数
 func generateHTML(w http.ResponseWriter, data interface{}, filenames ...string) {
 	var files []string
 	for _, file := range filenames {
@@ -20,6 +21,7 @@ func generateHTML(w http.ResponseWriter, data interface{}, filenames ...string) 
 	templates.ExecuteTemplate(w, "layout", data)
 }
 
+// ハンドラを呼び出して、サーバーを起動する関数
 func StartMainServer() error {
 	files := http.FileServer(http.Dir(config.Config.Static))
 	// NOTE:/static/というディレクトリは無いので、/static/をパスから取り除く
@@ -27,6 +29,8 @@ func StartMainServer() error {
 
 	// topハンドラを呼び出す
 	http.HandleFunc("/", top)
+	// signupハンドラを呼び出す
+	http.HandleFunc("/signup", signup)
 
 	// NOTE: 第二引数は、通常、デフォルトのマルチプレクサを使用するため、nil
 	// デフォルトで登録されていないページにアクセスしたら、page not found を返してくれる
